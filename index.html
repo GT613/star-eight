@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no" />
+  <meta name="theme-color" content="#07111f" />
+  <title>第八星系风云</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="mobile-overrides.css" />
+</head>
+<body>
+  <div id="app" class="app">
+    <section id="home" class="screen home active">
+      <div class="stars"></div>
+      <header class="hero">
+        <p class="eyebrow">EIGHTH GALAXY · INTERACTIVE STORY</p>
+        <h1>第八星系<br><span>风云</span></h1>
+        <p class="lead">五个人，五条命运航线。你的每一次选择，都会被星海记住。</p>
+      </header>
+      <div id="role-list" class="role-list" aria-label="角色主线"></div>
+      <p class="home-tip">点击人物，进入其独立主线</p>
+    </section>
+
+    <section id="game" class="screen game" aria-live="polite">
+      <div id="backdrop" class="backdrop"></div>
+      <div class="shade"></div>
+      <header class="game-top">
+        <button id="back-home" class="icon-btn" aria-label="返回主菜单">←</button>
+        <div class="route-title"><strong id="route-name"></strong><span id="chapter-name"></span></div>
+        <button id="open-menu" class="icon-btn" aria-label="打开设置">☰</button>
+      </header>
+      <div class="progress"><i id="progress-bar"></i></div>
+      <main class="stage">
+        <img id="portrait" class="portrait" alt="" />
+        <section id="dialogue" class="dialogue">
+          <div class="speaker" id="speaker"></div>
+          <div id="story-text" class="story-text"></div>
+          <button id="open-minigame" class="minigame-trigger" hidden><span>◎</span><b id="minigame-trigger-title"></b><small>完成互动挑战</small></button>
+          <button id="open-plugin" class="plugin-trigger" hidden><span>✦</span><b>开启剧情插件</b><small id="plugin-trigger-title"></small></button>
+          <div id="choices" class="choices"></div>
+          <button id="next" class="next">继续 <span>›</span></button>
+        </section>
+      </main>
+    </section>
+
+    <section id="ending" class="screen ending">
+      <div class="ending-card">
+        <p class="eyebrow">ROUTE COMPLETE</p>
+        <h2 id="ending-title">主线完成</h2>
+        <p id="ending-copy"></p>
+        <div id="route-record" class="route-record"></div>
+        <button id="ending-home" class="primary">返回星海</button>
+      </div>
+    </section>
+
+    <aside id="menu" class="menu" aria-hidden="true">
+      <div class="menu-panel">
+        <div class="menu-head"><h2>航行设置</h2><button id="close-menu" class="icon-btn">×</button></div>
+        <label>文字速度 <input id="speed" type="range" min="8" max="40" value="18" /></label>
+        <button id="toggle-audio" class="setting-row">背景音乐 <span>已开启</span></button>
+        <label>音乐音量 <input id="volume" type="range" min="0" max="100" value="42" /></label>
+        <button id="restart" class="setting-row danger">重新开始当前主线</button>
+        <p class="menu-note">进度会自动保存在当前手机浏览器中。</p>
+      </div>
+    </aside>
+
+    <aside id="story-plugin" class="story-plugin" aria-hidden="true">
+      <article class="plugin-card" role="dialog" aria-modal="true" aria-labelledby="plugin-title">
+        <div class="plugin-orbit"></div>
+        <header class="plugin-head">
+          <div><span id="plugin-label"></span><h2 id="plugin-title"></h2></div>
+          <button id="close-plugin" class="icon-btn" aria-label="关闭剧情插件">×</button>
+        </header>
+        <div id="plugin-content" class="plugin-content"></div>
+        <footer><span>ARCHIVE · EIGHTH GALAXY</span><button id="finish-plugin">收起卡片</button></footer>
+      </article>
+    </aside>
+
+    <aside id="minigame" class="minigame" aria-hidden="true">
+      <article class="minigame-card" role="dialog" aria-modal="true" aria-labelledby="minigame-title">
+        <header class="minigame-head">
+          <div><span>航行互动</span><h2 id="minigame-title"></h2></div>
+          <button id="close-minigame" class="icon-btn" aria-label="关闭小游戏">×</button>
+        </header>
+        <p id="minigame-instruction" class="minigame-instruction"></p>
+        <div id="minigame-board" class="minigame-board"></div>
+        <p id="minigame-feedback" class="minigame-feedback" aria-live="polite"></p>
+        <button id="finish-minigame" class="primary" hidden>完成挑战</button>
+      </article>
+    </aside>
+  </div>
+  <script src="story-data.js"></script>
+  <script src="game.js"></script>
+</body>
+</html>
