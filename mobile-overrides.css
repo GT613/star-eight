@@ -130,3 +130,125 @@
 .ending {
   background: linear-gradient(rgba(3,9,17,.3), rgba(3,9,17,.92)), url("背景图片/玫瑰之心虫洞-最终决战.webp") center/cover;
 }
+
+/* Character scenes: story on the left, portrait on the right. */
+.shade {
+  background:
+    linear-gradient(90deg, rgba(1,7,14,.56) 0%, rgba(1,7,14,.23) 48%, rgba(1,7,14,.08) 72%),
+    linear-gradient(180deg, rgba(1,7,14,.4), transparent 32%, rgba(1,6,12,.42));
+}
+.stage {
+  display: grid;
+  grid-template-columns: minmax(0, 64%) minmax(112px, 36%);
+  align-items: end;
+  justify-content: center;
+  gap: 0;
+  padding: 18px 12px max(18px, env(safe-area-inset-bottom));
+}
+.portrait {
+  position: relative;
+  grid-column: 2;
+  grid-row: 1;
+  align-self: end;
+  justify-self: center;
+  width: 100%;
+  height: min(72vh, 720px);
+  max-width: 100%;
+  object-fit: contain;
+  object-position: center bottom;
+  z-index: 1;
+  pointer-events: none;
+}
+.dialogue {
+  grid-column: 1;
+  grid-row: 1;
+  align-self: center;
+  width: 100%;
+  min-height: 0;
+  max-height: calc(100vh - 115px);
+  margin: 0;
+  padding: 22px 20px;
+  overflow-y: auto;
+  border: 1px solid rgba(181, 216, 235, .3);
+  border-left: 3px solid color-mix(in srgb, var(--accent), white 12%);
+  border-radius: 3px 16px 16px 3px;
+  background:
+    linear-gradient(135deg, color-mix(in srgb, var(--accent), transparent 91%), transparent 42%),
+    linear-gradient(145deg, rgba(7, 19, 31, .9), rgba(3, 10, 18, .8));
+  box-shadow:
+    0 22px 55px rgba(0, 0, 0, .38),
+    inset 0 1px rgba(255, 255, 255, .09),
+    inset 18px 0 40px color-mix(in srgb, var(--accent), transparent 94%);
+  backdrop-filter: blur(15px) saturate(1.15);
+  z-index: 2;
+}
+.dialogue::before,
+.dialogue::after {
+  content: "";
+  position: absolute;
+  right: 14px;
+  width: 42px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--accent));
+  opacity: .75;
+}
+.dialogue::before { top: 11px; }
+.dialogue::after { bottom: 11px; }
+.speaker {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 12px;
+  font-size: 12px;
+  font-weight: 700;
+  text-shadow: 0 0 14px color-mix(in srgb, var(--accent), transparent 35%);
+}
+.speaker::after {
+  content: "";
+  width: 48px;
+  height: 1px;
+  background: linear-gradient(90deg, var(--accent), transparent);
+}
+.story-text {
+  max-height: 43vh;
+  min-height: 82px;
+  padding-right: 5px;
+  font-size: clamp(14px, 3.8vw, 16px);
+  line-height: 1.85;
+  scrollbar-width: thin;
+  scrollbar-color: var(--accent) transparent;
+}
+.choices { max-height: 27vh; }
+.choice { background: rgba(8, 24, 38, .86); }
+
+@media (min-width: 900px) {
+  .stage {
+    grid-template-columns: minmax(420px, 650px) minmax(280px, 480px);
+    gap: clamp(24px, 4vw, 72px);
+    padding: 28px clamp(34px, 6vw, 100px) 34px;
+  }
+  .portrait {
+    width: min(34vw, 480px);
+    height: min(80vh, 820px);
+  }
+  .dialogue {
+    width: min(46vw, 650px);
+    max-height: calc(100vh - 150px);
+    padding: 30px 34px 28px;
+    border-radius: 4px 22px 22px 4px;
+  }
+  .story-text {
+    max-height: 46vh;
+    min-height: 110px;
+    font-size: 16px;
+    line-height: 1.95;
+  }
+}
+
+@media (max-width: 430px) {
+  .stage { grid-template-columns: minmax(0, 68%) minmax(96px, 32%); padding-inline: 8px; }
+  .dialogue { padding: 18px 14px; border-radius: 3px 12px 12px 3px; }
+  .portrait { height: 66vh; }
+  .story-text { font-size: 14px; line-height: 1.75; }
+  .choice { padding: 11px 10px; font-size: 13px; }
+}
